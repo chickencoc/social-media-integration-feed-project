@@ -45,6 +45,7 @@ public class WebSecurityConfig {
 //                                .requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
 //                                .requestMatchers(new AntPathRequestMatcher("/tokens")).permitAll()
 //                                .requestMatchers(new AntPathRequestMatcher("/posts")).permitAll()
+//                                .requestMatchers(new AntPathRequestMatcher("/swagger-ui")).permitAll()
 //                                .anyRequest().authenticated()
                                 .anyRequest().permitAll()
                 );
