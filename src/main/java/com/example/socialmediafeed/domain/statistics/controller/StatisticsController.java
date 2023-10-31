@@ -3,6 +3,8 @@ package com.example.socialmediafeed.domain.statistics.controller;
 import com.example.socialmediafeed.domain.statistics.dto.StatisticsResponseDto;
 import com.example.socialmediafeed.domain.statistics.service.StatisticsService;
 import com.example.socialmediafeed.domain.user.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /// 통계 관련 API
+@Tag(name = "StatisticsController", description = "통계 API")
 @RestController
 @RequestMapping("/statistics")
 @RequiredArgsConstructor
@@ -29,8 +32,10 @@ public class StatisticsController {
      * @param value
      * @return List<StatisticsResponseDto>
      */
+    @Operation(summary = "SNS 게시글 통계 조회", description = "start ~ end 기간내 (시작일, 종료일 포함) 해당 hashtag가 포함된 게시물 수를 일자별로 제공합니다. " +
+            "또는, start ~ end 기간내 (시작일, 종료일 포함) 해당 hashtag가 포함된 게시물 수를 시간별로 제공합니다. ")
     @GetMapping
-    public ResponseEntity getStatistics(
+    public ResponseEntity<List<StatisticsResponseDto>> getStatistics(
             @RequestHeader String Authorization,
             @RequestParam(required = false) String hashtag,
             @RequestParam String type, // date, hour 둘 중 하나
